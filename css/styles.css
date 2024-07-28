@@ -2,7 +2,7 @@ body {
   font-family: "Roboto", sans-serif;
   line-height: 1.5;
   font-size: 18px;
-  margin: 10px 40px;
+  margin: 0px auto;
 }
 
 p,
@@ -27,11 +27,6 @@ h2 {
   font-size: 20px;
 }
 
-.footer-text {
-  font-size: 10px;
-  text-align: center;
-}
-
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -43,4 +38,35 @@ h2 {
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+
+header {
+  margin-bottom: 5px;
+  border-bottom: 2px solid lightgray;
+}
+
+.nav-list {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.nav-link {
+  display: block;
+  padding: 0 5px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.current {
+  background-color: lightgray;
+}
+
+main {
+  margin: 0 40px;
+}
+
+.footer-text {
+  font-size: 10px;
+  text-align: center;
 }
