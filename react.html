@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Q&amp;A</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/modern-normalize@2.0.0/modern-normalize.min.css"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li class="question">
+            <a href="./index.html" class="nav-link">HTML/CSS</a>
+          </li>
+          <li class="nav-item">
+            <a href="./js.html" class="nav-link">JavaScript</a>
+          </li>
+          <li class="nav-item">
+            <a href="./react.html" class="nav-link current">React</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <h1 class="visually-hidden">React</h1>
+
+      <ol class="question-list">
+        <li class="question">Для чого потрібний Virtual DOM у React?</li>
+        <div class="answer">
+          <p class="answer-text">
+            Віртуальний DOM - це концепція програмування, в якій «віртуальне»
+            представлення інтерфейсу користувача зберігається в пам'яті та
+            синхронізується з «справжнім» DOM за допомогою бібліотеки ReactDOM.
+            Ця техніка дозволяє покращити продуктивність на клієнтській стороні,
+            уникаючи прямої роботи з DOM шляхом роботи з легким
+            JavaScript-об'єктом, що імітує DOM-дерево.
+          </p>
+        </div>
+        <hr />
+
+        <li class="question">Яка різниця між virtual DOM та shadow DOM?</li>
+        <div class="answer">
+          <p class="answer-text">
+            Virtual DOM - повне представлення реального DOM-дерева у вигляді
+            JavaScript-об'єкта. Його найважливішою особливістю є групування змін
+            та виконання одиночного рендерингу замість безлічі дрібних.
+          </p>
+          <p class="answer-text">
+            Shadow DOM - це нативна реалізація в браузері, яка дозволяє створити
+            свій, ізольований, DOM. Всередині Shadow DOM створюється окремий
+            "під-документ", до якого можна застосовувати свої стилі, екрановані
+            від впливу зовнішнього середовища.
+          </p>
+        </div>
+        <hr />
+
+        <li class="question">Яка різниця між state та props?</li>
+        <div class="answer">
+          <ul class="answer-ul">
+            <li>props - передається в компонент ззовні;</li>
+            <li>state - внутрішній стан компонента.</li>
+          </ul>
+        </div>
+        <hr />
+
+        <li class="question">
+          Яка різниця між класовим та функціональним компонентом?
+        </li>
+        <div class="answer">
+          <ol class="answer-ol">
+            <li>
+              У класових компонентів є state, а у функціональних його немає. Але
+              стан для функціонального компонента можна додати за допомогою хука
+              useState.
+            </li>
+            <li>
+              У класових компонентів є методи життєвого циклу, а у
+              функціональних його немає. Але деякі методи життєвого циклу для
+              функціонального компонента можна реалізувати за допомогою хука
+              useEffect.
+            </li>
+          </ol>
+        </div>
+        <hr />
+
+        <li class="question">Які методи життєвого циклу є в React?</li>
+        <div class="answer">
+          <p class="answer-text">
+            В React є 3 фази: монтування, оновлення та розмонтування. У кожній
+            із цих фаз є свої методи життєвого циклу:
+          </p>
+          <ul class="answer-ul">
+            <li>
+              Монтування:
+              <ul class="answer-sub-ul">
+                <li>constructor(),</li>
+                <li>static getDerivedStateFromProps(),</li>
+                <li>render(),</li>
+                <li>componentDidMount();</li>
+              </ul>
+            </li>
+            <li>
+              Оновлення:
+              <ul class="answer-sub-ul">
+                <li>static getDerivedStateFromProps(),</li>
+                <li>shouldComponentUpdate(),</li>
+                <li>render(),</li>
+                <li>getSnapshotBeforeUpdate(),</li>
+                <li>componentDidUpdate();</li>
+              </ul>
+            </li>
+            <li>
+              Розмонтування:
+              <ul class="answer-sub-ul">
+                <li>componentWillUnmount();</li>
+              </ul>
+            </li>
+            <li>
+              Обробка помилок:
+              <ul class="answer-sub-ul">
+                <li>static getDerivedStateFromError(),</li>
+                <li>componentDidCatch().</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <hr />
+
+        <li class="question">Як оновити state у класовому компоненті?</li>
+        <div class="answer">
+          <p class="answer-text">
+            Для того, щоб оновити стан у класовому компоненті, можна
+            використовувати метод setState. Цей метод є асинхронним і React може
+            згрупувати кілька викликів setState() в одне оновлення для
+            поліпшення продуктивності. Метод setState може приймати функцію для
+            того, щоб оновити стейт на основі вже наявного state. Виклик методу
+            setState завжди призводить до оновлення компонента.
+          </p>
+        </div>
+        <hr />
+
+        <li class="question">Чому setState асинхронна функція?</li>
+        <div class="answer">
+          <p class="answer-text">
+            Це потрібно для того, щоб React зміг згрупувати кілька викликів
+            setState() в одне оновлення для покращення продуктивності. Виклик
+            setState призводить до оновлення компонента, тому setState зробили
+            асинхронною, щоб "дочекатися" поки всі компоненти викличуть
+            setState() у своїх обробниках подій, перш ніж почати повторний
+            рендер. Це позбавляє непотрібних повторних рендерів.
+          </p>
+        </div>
+        <hr />
+
+        <li class="question">Що потрібно зробити, щоб компонент оновився?</li>
+        <div class="answer">
+          <p class="answer-text">
+            Компонент будке оновлено в наступних випадках:
+          </p>
+          <ul class="answer-ul">
+            <li>зміна state шляхом виклику метода setState;</li>
+            <li>зміна props;</li>
+            <li>виклик метода forceUpdate.</li>
+          </ul>
+        </div>
+        <hr />
+
+        <li class="question">Як запобігти зайвому оновленню компонента?</li>
+        <div class="answer">
+          <p class="answer-text">Існує кілька способів:</p>
+          <ul class="answer-ul">
+            <li>
+              реалізувати метод життєвого циклу shouldComponentUpdate, який
+              скасовує рендер, якщо з нього повернути значення false;
+            </li>
+            <li>
+              <!-- успадкуватися (???)  -->
+              успадкуватися від PureComponent при створенні класового
+              компонента.
+            </li>
+          </ul>
+        </div>
+        <hr />
+
+        <li class="question">Яка особливість PureComponent?</li>
+        <div class="answer">
+          <p class="answer-text">
+            В більшості випадків PureComponent можна використовувати замість
+            написання власного shouldComponentUpdate. Але він робить лише
+            поверхневе порівняння.
+          </p>
+        </div>
+        <hr />
+
+        <li class="question">Для чого потрібні key?</li>
+        <div class="answer">
+          <p class="answer-text">
+            key - це спеціальний рядковий атрибут, який потрібно вказувати під
+            час створення списку елементів. Ключі допомагають React визначати,
+            які елементи були змінені, додані чи видалені. Їх необхідно
+            вказувати, щоб React міг зіставляти елементи масиву з плином часу.
+          </p>
+        </div>
+        <hr />
+
+        <li class="question">Для чого потрібний компонент Fragment?</li>
+        <div class="answer">
+          <p class="answer-text">
+            React компонент завжди повинен повертати тільки один елемент. Але
+            іноді бувають завдання коли треба повернути кілька елементів.
+            Фрагменти дозволяють формувати список дочірніх елементів, не
+            створюючи зайвих вузлів в DOM.
+          </p>
+        </div>
+        <hr />
+
+        <li class="question">Для чого потрібні портали?</li>
+        <div class="answer">
+          <p class="answer-text">
+            Портали дозволяють рендерити дочірні елементи в DOM-вузол, що
+            знаходиться поза DOM-ієрархією батьківського компонента.
+          </p>
+        </div>
+        <hr />
+
+        <li class="question">Що таке refs?</li>
+        <div class="answer">
+          <p class="answer-text">
+            Рефи дають можливість отримати доступ до DOM-вузлів або
+            React-елементів, створених у рендер-методі. Також рефи можуть
+            зберігати в собі будь-яку іншу інформацію, окрім DOM-вузла.
+          </p>
+        </div>
+        <hr />
+
+        <li class="question">Що таке context?</li>
+        <div class="answer">
+          <p class="answer-text">
+            У React-додатку дані передаються зверху вниз за допомогою props.
+            Однак, подібний спосіб використання може бути надто громіздким для
+            деяких типів props, які необхідно передавати до багатьох компонентів
+            у додатку. Контекст надає спосіб ділитися такими даними між
+            компонентами без необхідності явно передавати пропси через кожен
+            рівень дерева.
+          </p>
+        </div>
+        <hr />
+
+        <li class="question">Для чого потрібні render props?</li>
+        <div class="answer">
+          <p class="answer-text">
+            Render props - це можливість компонентів React розділяти код між
+            собою за допомогою пропса, значенням якого є функція. Компонент із
+            рендер-пропсом бере функцію, яка повертає React-елемент, і викликає
+            її замість реалізації власного рендеру.
+          </p>
+        </div>
+        <hr />
+
+        <li class="question">Що таке HOCs?</li>
+        <div class="answer">
+          <p class="answer-text">
+            Higher-Order Component, Компонент вищого порядку - це функція, яка
+            приймає компонент та повертає новий компонент. Це потрібно для того,
+            щоб винести певну бізнес-логіку в одне місце та знову
+            використовувати її шляхом композиції компонентів.
+          </p>
+        </div>
+        <hr />
+
+        <li class="question">
+          Як реалізувати компонент запобіжника (Error Boundary)?
+        </li>
+        <div class="answer">
+          <p class="answer-text">
+            Запобіжники - це компоненти React, які виловлюють помилки JavaScript
+            в будь-якому місці дерев їх дочірніх компонентів, зберігають їх у
+            журналі помилок і виводять запасний UI замість дерева компонентів,
+            що звалилося. Класовий компонент є запобіжником, якщо він реалізує
+            хоча б один із методів життєвого циклу: static
+            getDerivedStateFromError() або componentDidCatch().
+          </p>
+        </div>
+        <hr />
+
+        <li class="question">Які можливості надають хуки?</li>
+        <div class="answer">
+          <p class="answer-text">
+            Хуки дозволяють використовувати стан та інші можливості React без
+            написання класів. Хуки дозволяють повторно використовувати логіку
+            стану, не зачіпаючи дерева компонентів.
+          </p>
+        </div>
+        <hr />
+
+        <li class="question">Які правила використання хуків?</li>
+        <div class="answer">
+          <p class="answer-text">
+            Хуки - звичайні JavaScript-функції, але є два правила, яких потрібно
+            дотримуватися:
+          </p>
+          <ol class="answer-ol">
+            <li>
+              Не викликайте хуки всередині циклів, умовних операторів чи
+              вкладених функцій.Натомість завжди використовуйте хуки тільки
+              всередині React-функцій або всередині власного хука, до повернення
+              будь-якого значення з них.
+            </li>
+            <li>
+              Також, при створенні власного хука, його ім'я має починатися з
+              «use».
+            </li>
+          </ol>
+        </div>
+        <hr />
+
+        <li class="question">Для чого потрібний useEffect?</li>
+        <div class="answer">
+          <p class="answer-text">
+            Хук useEffect дає можливість виконувати побічні ефекти у
+            функціональному компоненті.
+          </p>
+          <ul class="answer-ul">
+            <li>
+              Якщо передати функцію в useEffect, вона буде викликатися після
+              кожного рендеру та оновлення.
+            </li>
+            <li>
+              Якщо передати функцію та її залежність в useEffect, вона буде
+              викликатися після рендеру і щоразу, коли її залежність змінюється.
+            </li>
+            <li>
+              Якщо передати функцію в useEffect, яка повертає іншу функцію, ця
+              функція буде викликана перед розмонтуванням компонента.
+            </li>
+          </ul>
+        </div>
+        <hr />
+
+        <li class="question">
+          Чим відрізняється useEffect від useLayoutEffect?
+        </li>
+        <div class="answer">
+          <p class="answer-text">
+            useEffect викликається після рендеру та оновлення компонента.
+          </p>
+          <p class="answer-text">
+            useLayoutEffect викликається синхронно перед рендером та оновленням
+            компонента. useLayoutEffect запускається у тій же фазі, що і
+            componentDidMount та componentDidUpdate.
+          </p>
+        </div>
+        <hr />
+
+        <li class="question">
+          Що таке лінива ініціалізація стану в useState та useReducer?
+        </li>
+        <div class="answer">
+          <p class="answer-text">
+            Коли початковий стан є результатом виклику якоїсь функції, його
+            можна ініціалізувати "ліниво" для того, щоб при кожному оновленні
+            компонента ця функція не викликалася. Для цього в useState або
+            useReducer потрібно передати функцію, яка поверне початковий стан, і
+            буде викликана лише один раз, під час першого рендеру.
+          </p>
+        </div>
+        <hr />
+
+        <li class="question">Чим useRef відрізняється від createRef?</li>
+        <div class="answer">
+          <p class="answer-text">
+            Різниця в тому, що коли потрібно створити ref всередині
+            функціонального компонента, використовуючи createRef, він буде
+            створюватися щоразу, коли оновлюється компонент. Використовуючи
+            useRef, він створюється 1 раз під час монтування.
+          </p>
+        </div>
+        <hr />
+
+        <li class="question">Для чого потрібні useMemo та useCallback?</li>
+        <div class="answer">
+          <p class="answer-text">
+            Хук useMemo буде повторно обчислювати мемоізоване значення лише
+            тоді, коли значення якоїсь із залежностей змінилося. Ця оптимізація
+            допомагає уникнути дорогих обчислень під час кожного рендеру.
+          </p>
+          <p class="answer-text">
+            Хук useCallback поверне мемоізовану версію колбека, який змінюється
+            лише тоді, коли змінюються значення однієї із залежностей. Це
+            корисно під час передачі колбеків оптимізованим дочірнім
+            компонентам, які покладаються на рівність посилань для запобігання
+            зайвим рендерам.
+          </p>
+        </div>
+        <hr />
+
+        <li class="question">Для чого потрібний redux?</li>
+        <div class="answer">
+          <p class="answer-text">
+            Redux - це бібліотека для керування станом програми. У звичайному
+            додатку React компоненти мають свій state і можуть передавати його в
+            якості props для дочірніх компонентів. У React-redux програмах є
+            один глобальний state, на який підписуються компоненти, яким
+            потрібно з нього читати дані.
+          </p>
+        </div>
+        <hr />
+
+        <li class="question">Поясніть redux data flow</li>
+        <div class="answer">
+          <p class="answer-text">
+            Життєвий цикл даних у будь-якій Redux-програмі включає 5 кроків:
+          </p>
+          <ol class="answer-ol">
+            <li>
+              викликається dispatch(action). Action - це простий
+              javascript-об'єкт, який описує що трапилося.
+            </li>
+            <li>
+              action потрапляє в middleware, і якщо це необхідно, запускає
+              якийсь сайд-ефект.
+            </li>
+            <li>
+              redux-стор викликає функцію-редюсер із двома аргументами: поточне
+              дерево стану (state) та екшен (action).
+            </li>
+            <li>
+              головний редюсер може комбінувати результат роботи кількох
+              редюсерів у єдине дерево стану програми.
+            </li>
+            <li>
+              redux-стор зберігає повне дерево стану, яке повертає головний
+              редюсер.
+            </li>
+          </ol>
+        </div>
+        <hr />
+
+        <li class="question">Що таке redux middleware?</li>
+        <div class="answer">
+          <p class="answer-text">
+            Redux middleware надають сторонню точку розширення між відправкою
+            екшену і моментом, коли цей екшен досягає редюсера. Redux middleware
+            часто використовують для логування, повідомлення про помилки,
+            спілкування з асинхронним API, роутингу тощо.
+          </p>
+        </div>
+        <hr />
+
+        <li class="question">Де потрібно робити side effects в redux?</li>
+        <div class="answer">
+          <p class="answer-text">
+            Redux натхненний функціональним програмуванням і з коробки виконання
+            побічних ефектів у ньому немає місця. Зокрема функції редюсера
+            завжди повинні бути чистими функціями типу (state, action) =>
+            newState. Однак, міддлвари Redux-а дозволяють перехоплювати екшени
+            та додавати до них складну поведінку, що включає побічні ефекти.
+          </p>
+        </div>
+        <hr />
+
+        <li class="question">Що таке next() функція в redux middleware?</li>
+        <div class="answer">
+          <p class="answer-text">
+            Виклик next (action) в middleware призведе до того, що дія буде
+            передана наступному middleware, а потім в редюсер. Це потрібно, щоб
+            дотримуватися ланцюжка викликів middleware.
+          </p>
+        </div>
+        <hr />
+
+        <li class="question">Для чого потрібні redux селектори?</li>
+        <div class="answer">
+          <p class="answer-text">
+            Селектори - це гетери для стану redux. Як і гетери, селектори
+            інкапсулюють структуру стану та можуть використовуватися повторно.
+            Селектори також можуть обчислювати похідні властивості.
+          </p>
+        </div>
+        <hr />
+
+        <li class="question">Чим відрізняється action від action creator?</li>
+        <div class="answer">
+          <p class="answer-text">
+            action - це об'єкт, який описує, що сталося.
+          </p>
+          <p class="answer-text">
+            action creator - це функція, яка може приймати якісь параметри та
+            повертає action.
+          </p>
+        </div>
+        <hr />
+      </ol>
+    </main>
+
+    <footer>
+      <p class="footer-text">
+        &copy; This page is made using the educational proceedings from the
+        Fullstack Developer course by GoIT for personal use. All rights reserved
+        by GoIT.
+      </p>
+      <p class="footer-text">
+        If you have any comments, suggestions, or if you would like to
+        contribute additional to list of QA for the interview, please write to
+        me by email
+        <a href="mailto:vitaliy.shchukin@gmail.com" target="_blank"
+          >vitaliy.shchukin@gmail.com</a
+        >
+      </p>
+    </footer>
+  </body>
+</html>
